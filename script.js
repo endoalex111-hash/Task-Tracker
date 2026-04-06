@@ -16,6 +16,20 @@ taskInput.addEventListener('keypress', function (e) {
     }
 });
 
+document.querySelector('.enter-btn').addEventListener('click', () => {
+    if (taskInput.value.trim() !== '') {
+        tasks.push({
+            id: Date.now(),
+            text: taskInput.value.trim(),
+            completed: false
+        });
+
+        taskInput.value = '';
+        renderTasks();
+    }
+});
+
+
 function toggleTask(id) {
     tasks = tasks.map(task => 
         task.id === id ? { ...task, completed: !task.completed } : task
@@ -60,3 +74,4 @@ function renderTasks() {
         taskList.appendChild(li);
     });
 }
+
